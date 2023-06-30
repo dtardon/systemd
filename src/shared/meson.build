@@ -373,3 +373,18 @@ libshared_fdisk = static_library(
                         userspace],
         c_args : ['-fvisibility=default'],
         build_by_default : false)
+
+executables += [
+        # NOTE: This cannot use test_template, as src/shared is 'included' in the main meson.build before the
+        # template is defined.
+        {
+                'include_directories' : includes,
+                'link_with' : libshared,
+                'install_rpath' : pkglibdir,
+                'build_by_default' : want_tests != 'false',
+                'install' : install_tests,
+                'install_dir' : unittestsdir,
+                'sources' : files('test-bus-polkit.c'),
+                'type' : 'manual',
+        },
+]

@@ -1,0 +1,5 @@
+[D-BUS Service]
+Name=org.freedesktop.PolicyKit1
+Exec=/usr/lib/systemd/tests/unit-tests/manual/test-bus-polkit --mock-polkit
+User=root
+SystemdService=mock-polkit.service
